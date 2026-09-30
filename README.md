@@ -1,66 +1,67 @@
-## PortSweeper
+# PortSweeper
 
-PortSweeper is a lightweight Python tool designed for scanning open ports on a given target IP address (IPv4, IPv6) or URL. It offers flexibility in scanning TCP, UDP, or both types of ports with options for speed adjustment and additional functionalities like banner grabbing and reverse DNS lookup.
+A lightweight, multi-threaded port scanner written in Python. It scans TCP and/or UDP ports on a target IPv4/IPv6 address or hostname, with optional banner grabbing and reverse DNS lookup.
 
-### How it works
+## Features
 
-PortSweeper utilizes Python's `socket` library to establish connections and scan for open ports. It employs multi-threading to enhance scanning speed, allowing simultaneous scanning of multiple ports.
+- Scan a target by IPv4, IPv6 or hostname
+- Scan specific ports, a port range, or all ports (0–65535)
+- TCP, UDP or both
+- Adjustable scan speed (1–5)
+- Banner grabbing on open TCP ports
+- Reverse DNS lookup
+- Multi-threaded for faster scans
 
-### Features
+## Tech stack
 
-- **Target Specification**: Users can specify the target IP address or URL as a command-line argument.
-- **Port Selection**: PortSweeper provides flexibility in selecting ports to scan, either specifying individual ports or scanning a range.
-- **Protocol Support**: Users can choose to scan TCP ports, UDP ports, or both.
-- **Speed Control**: PortSweeper allows users to adjust the scanning speed on a scale from 1 to 5, enabling customization based on requirements.
-- **Banner Grabbing**: Optionally, users can choose to grab banners from open TCP ports to gather additional information about services running on those ports.
-- **Reverse DNS Lookup**: PortSweeper offers the functionality to perform reverse DNS lookup to translate IP addresses into domain names.
+- Python 3 (standard library only: `socket`, `threading`, `argparse`)
 
 ## Installation
 
-1. Clone the repository:
+No external dependencies are required.
 
-    ```bash
-    git clone https://github.com/LupusJM/PortSweeper.git
-    ```
+```bash
+git clone https://github.com/jirimdf/PortSweeper.git
+cd PortSweeper
+```
 
-3. Install Dependencies:
+## Usage
 
-   ```bash
-   pip install argparse
-   ```
+```bash
+python main.py <target> [-p PORT [PORT ...]] [-t] [-u] [-a] [-s SPEED] [-r] [-b]
+```
 
-2. Run the Python script `main.py` with appropriate command-line arguments.
-    ```bash
-    python main.py <target> [-p PORT [PORT ...]] [-t] [-u] [-a] [-s SPEED] [-r] [-b]
-    ```
+| Argument | Description |
+|---|---|
+| `target` | Target IP address (IPv4/IPv6) or hostname |
+| `-p`, `--port` | Port(s) to scan: a single port or a range (`20 80`) |
+| `-t`, `--tcp` | Scan TCP ports |
+| `-u`, `--udp` | Scan UDP ports |
+| `-a`, `--all` | Scan all ports (0–65535) |
+| `-s`, `--speed` | Scan speed from 1 (slowest) to 5 (fastest) |
+| `-r`, `--reverse-dns` | Perform a reverse DNS lookup |
+| `-b`, `--banner` | Grab banners from open TCP ports |
+| `-h`, `--help` | Show help |
 
-## Command-line Arguments
+### Examples
 
-- `target`: Specify the target IP address (IPv4, IPv6) or URL.
-- `-p, --port`: Specify the port(s) to scan. Can be single or multiple ports.
-- `-t, --tcp`: Scan TCP ports.
-- `-u, --udp`: Scan UDP ports.
-- `-a, --all`: Scan all ports (0-65535).
-- `-s, --speed`: Adjust scan speed on a scale from 1 to 5.
-- `-r, --reverse-dns`: Perform reverse DNS lookup.
-- `-b, --banner`: Grab banners from open TCP ports.
+Scan TCP and UDP ports 20–80 on `example.com` with banner grabbing and reverse DNS lookup:
 
-## Example
-
-To scan TCP/UDP ports 20 to 80 on the target URL example.com with banner grabbing and reverse DNS lookup, the command would be:
 ```bash
 python main.py example.com -p 20 80 -t -u -r -b
 ```
 
-Scan all TCP ports on the target IP 10.10.110.28 example.com with speed 1:
+Scan all TCP ports on `10.10.110.28`:
+
 ```bash
 python main.py 10.10.110.28 -t -a
 ```
 
->python main.py --help
 ## Notes
-- Tested and verified in Linux & Windows OS.
-- PortSweeper is intended for legitimate security testing purposes only. Unauthorized scanning may violate laws and regulations. Ensure proper authorization before use. Creators are not responsible for misuse.
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/lupusjm/PortSweeper/blob/main/LICENSE)
+- Tested on Windows and Linux.
+- This tool is intended for learning and authorized security testing only. Only scan systems you own or have explicit permission to test.
 
+## License
+
+This project is licensed under the [MIT License](LICENSE).
