@@ -57,6 +57,18 @@ Scan all TCP ports on `10.10.110.28`:
 python main.py 10.10.110.28 -t -a
 ```
 
+### Example output
+
+```
+$ python main.py 127.0.0.1 -p 130 140 -t
+Starting MDF scanner v0.1.0 ( https://github.com/jirimdf ) at 2026-09-30 23:19:36
+Scanning target 127.0.0.1 on port 130 to 140
+
+Scanned open port on 135/TCP
+
+MDF done: 1 open port found in 1.01 seconds
+```
+
 ## Notes
 
 - Tested on Windows and Linux.

@@ -4,7 +4,7 @@ import threading
 import time
 from datetime import datetime
 
-parser = argparse.ArgumentParser(description="PortSweeper v0.1.0 ( https://github.com/LupusJM )")
+parser = argparse.ArgumentParser(description="PortSweeper v0.1.0 ( https://github.com/jirimdf )")
 parser.add_argument("target", help="Target IP address or URL")
 parser.add_argument("-p", "--port", nargs="+", help="Port(s) to scan", type=int)
 parser.add_argument("-t", "--tcp", action="store_true", help="Scan TCP ports")
@@ -85,7 +85,7 @@ def port_scan(target, ports, tcp, udp):
         start_port, end_port = ports[0], ports[-1]
 
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S %Z")
-    print(f"Starting Lupus scanner v0.1.0 ( https://github.com/LupusJM ) at {current_time}")
+    print(f"Starting MDF scanner v0.1.0 ( https://github.com/jirimdf ) at {current_time}")
     print(f"Scanning target {target} on port {start_port} to {end_port}\n")
 
     if args.reverse_dns:
@@ -119,7 +119,7 @@ def port_scan(target, ports, tcp, udp):
     if not open_ports:
         print("Scanner didn't find any open ports")
     else:
-        print(f"\nLupus done: {len(open_ports)} open {port_word} found in {duration:.2f} seconds")
+        print(f"\nMDF done: {len(open_ports)} open {port_word} found in {duration:.2f} seconds")
 
 
 if __name__ == "__main__":
